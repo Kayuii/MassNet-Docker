@@ -5,9 +5,9 @@ IMAGE_TAG:=mass
 TARGET_IMAGE_PRD=$(IMAGE_PREFIX)/$(IMAGE_TAG)
 
 ifndef CIRCLE_TAG
-TAG_PREFIX:="mass-v"
+TAG_PREFIX:="v"
 else
-TAG_PREFIX:=$(shell echo $(CIRCLE_TAG) | sed 's/-v[0-9.]*/-v/')
+TAG_PREFIX:=$(shell echo $(CIRCLE_TAG) | sed 's/v[0-9.]*/v/')
 endif
 
 TAG := $(shell git describe --tags --abbrev=0 --match '${TAG_PREFIX}*')
@@ -48,8 +48,8 @@ tag:
 	    echo "$(SHORTCOMMIT) on $(BRANCH) is already tagged as $(TAG)"; \
 	    exit 1; \
 	fi
-	if [ "$(BRANCH)" != "master" ] && \
-	   ! [ "$(BRANCH)" =~ ^chiapos- ]; then \
+	if [ "$(BRANCH)" != "main" ] && \
+	   ! [ "$(BRANCH)" =~ ^- ]; then \
 		echo Cannot tag $(BRANCH); \
 		exit 1; \
 	fi
