@@ -50,6 +50,6 @@ workflows:
           context: docker
           filters:
             tags:
-              only: /^mass-v.*/
+              only: /^v.*/
             branches:
               ignore: /.*/
