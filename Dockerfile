@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 alpine:3.12 as builder
+FROM alpine:3.12 as builder
 
 ARG MINERVER=v2.0.1
 ARG WALLETVER=v2.0.1
