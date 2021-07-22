@@ -59,10 +59,10 @@ tag:
 	@echo run \'git push origin $(NEXTTAG)\' to push to GitHub.
 
 master: echo
-	docker build --build-arg MINERVER=$(VERSION) --build-arg WALLETVER=$(VERSION) -f Dockerfile -t ${TARGET_IMAGE} . ;
+	docker build --build-arg MINERVER=v$(VERSION) --build-arg WALLETVER=v$(VERSION) -f Dockerfile -t ${TARGET_IMAGE} . ;
 
 mass: echo
-	docker build --build-arg MINERVER=$(VERSION) --build-arg WALLETVER=$(VERSION) -f Dockerfile -t ${TARGET_IMAGE} . ;
+	docker build --build-arg MINERVER=v$(VERSION) --build-arg WALLETVER=v$(VERSION) -f Dockerfile -t ${TARGET_IMAGE} . ;
 
 push:
 	docker push ${TARGET_IMAGE} ;
