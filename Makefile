@@ -4,10 +4,10 @@ IMAGE_TAG:=mass
 
 TARGET_IMAGE_PRD=$(IMAGE_PREFIX)/$(IMAGE_TAG)
 
-ifndef CIRCLE_TAG
-TAG_PREFIX:="v"
-else
+ifdef CIRCLE_TAG
 TAG_PREFIX:=$(shell echo $(CIRCLE_TAG) | sed 's/v[0-9.]*/v/')
+else
+TAG_PREFIX:=$(shell echo v | sed 's/v[0-9.]*/v/')
 endif
 
 TAG := $(shell git describe --tags --abbrev=0 --match '${TAG_PREFIX}*')
@@ -36,6 +36,7 @@ echo:
 	@echo VERSION $(VERSION)
 	@echo SHORTCOMMIT $(SHORTCOMMIT)
 	@echo RELEASE $(RELEASE)
+	@echo BRANCH $(BRANCH)
 	@echo TARGET_IMAGE $(TARGET_IMAGE)
 
 tag:
