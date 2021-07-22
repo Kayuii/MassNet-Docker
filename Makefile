@@ -5,7 +5,7 @@ IMAGE_TAG:=mass
 TARGET_IMAGE_PRD=$(IMAGE_PREFIX)/$(IMAGE_TAG)
 
 ifndef CIRCLE_TAG
-TAG_PREFIX:="latest"
+TAG_PREFIX:="mass-v"
 else
 TAG_PREFIX:=$(shell echo $(CIRCLE_TAG) | sed 's/-v[0-9.]*/-v/')
 endif
@@ -19,7 +19,7 @@ RELEASE := $(shell git describe --tags --match '${TAG_PREFIX}*' \
              | sed 's/^[^-]*-//' \
              | sed 's/-/./')
 BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
-ifeq ("$(BRANCH)", "master")
+ifeq ("$(BRANCH)", "main")
 	TARGET_IMAGE = $(shell echo "${TARGET_IMAGE_PRD}:latest")
 else
 	TARGET_IMAGE = $(shell echo "${TARGET_IMAGE_PRD}:${TAG}")
