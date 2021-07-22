@@ -10,10 +10,6 @@ jobs:
           command:
             make master;
       - run:
-          name: "Text docker images"
-          command:
-            make test;
-      - run:
           name: "Push docker images"
           command: |
             echo "$DOCKER_PWD" | docker login --username kayuii --password-stdin
@@ -27,10 +23,6 @@ jobs:
           name: "build Dockerfile"
           command:
             make mass;
-      - run:
-          name: "test docker images"
-          command:
-            make test;
       - run:
           name: "Push docker images"
           command: |
