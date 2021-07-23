@@ -30,5 +30,12 @@ WORKDIR /opt
 
 RUN apt-get -qq update \
     && apt-get -qq install -y --no-install-recommends ca-certificates curl gosu tini \
+    && cd /opt/wallet/conf \
+    && mv sample-config.min.json ../config.json \
+    && mv walletcli-config.json ../ \
+    && cd /opt/miner/conf \
+    && mv sample-config.m2.json ../config.json \
     && cd /opt/ \
     && ls -al /opt/
+
+WORKDIR /opt/wallet
