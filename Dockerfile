@@ -26,7 +26,6 @@ COPY --from=builder /etc/timezone /etc
 COPY --from=builder /opt/ /opt/
 
 ENV PATH=$PATH:/opt/miner:/opt/wallet
-WORKDIR /opt
 
 RUN apt-get -qq update \
     && apt-get -qq install -y --no-install-recommends ca-certificates curl gosu tini \
