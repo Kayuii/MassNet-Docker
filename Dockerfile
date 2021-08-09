@@ -32,6 +32,7 @@ RUN apt-get -qq update \
     && git clone git://github.com/robbyrussell/oh-my-zsh.git /root/.oh-my-zsh \
     && git clone git://github.com/zsh-users/zsh-autosuggestions /root/.oh-my-zsh/plugins/zsh-autosuggestions \
     && cp /root/.oh-my-zsh/templates/zshrc.zsh-template /root/.zshrc \
+    && chsh -s /bin/zsh \
     && sed -i "s/robbyrussell/ys/g" /root/.zshrc \
     && sed -i "s/plugins=(git)/plugins=(git z zsh-autosuggestions)/g" /root/.zshrc \
     && sed -i "1i DISABLE_AUTO_UPDATE=\"true\"" /root/.zshrc \
