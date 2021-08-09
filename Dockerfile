@@ -34,10 +34,7 @@ RUN apt-get -qq update \
     && cp /root/.oh-my-zsh/templates/zshrc.zsh-template /root/.zshrc \
     && sed -i "s/robbyrussell/ys/g" /root/.zshrc \
     && sed -i "s/plugins=(git)/plugins=(git z zsh-autosuggestions)/g" /root/.zshrc \
-    && sed -i "1i DISABLE_AUTO_UPDATE=\"true\"" ~/.zshrc \
-    && cd /opt/wallet/conf \
-    && mv sample-config.min.json ../config.json \
-    && mv walletcli-config.json ../ \
+    && sed -i "1i DISABLE_AUTO_UPDATE=\"true\"" /root/.zshrc \
     && cd /opt/miner/conf \
     && mv sample-config.m2.json ../config.json \
     && cd /opt/ \
