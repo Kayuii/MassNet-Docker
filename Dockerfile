@@ -35,10 +35,6 @@ RUN apt-get -qq update \
     && sed -i "s/robbyrussell/ys/g" /root/.zshrc \
     && sed -i "s/plugins=(git)/plugins=(git z zsh-autosuggestions)/g" /root/.zshrc \
     && sed -i "1i DISABLE_AUTO_UPDATE=\"true\"" ~/.zshrc \
-    && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-    && echo Asia/Shanghai > /etc/timezone \
-    && echo "time zone:" \
-    && cat /etc/timezone \
     && cd /opt/wallet/conf \
     && mv sample-config.min.json ../config.json \
     && mv walletcli-config.json ../ \
