@@ -28,7 +28,17 @@ COPY --from=builder /opt/ /opt/
 ENV PATH=$PATH:/opt/miner:/opt/wallet
 
 RUN apt-get -qq update \
-    && apt-get -qq install -y --no-install-recommends ca-certificates curl gosu tini \
+    && apt-get -qq install -y --no-install-recommends ca-certificates curl gosu tini expect tcl jq zsh git \
+    && git clone git://github.com/robbyrussell/oh-my-zsh.git /root/.oh-my-zsh \
+    && git clone git://github.com/zsh-users/zsh-autosuggestions /root/.oh-my-zsh/plugins/zsh-autosuggestions \
+    && cp /root/.oh-my-zsh/templates/zshrc.zsh-template /root/.zshrc \
+    && sed -i "s/robbyrussell/ys/g" /root/.zshrc \
+    && sed -i "s/plugins=(git)/plugins=(git z zsh-autosuggestions)/g" /root/.zshrc \
+    && sed -i "1i DISABLE_AUTO_UPDATE=\"true\"" ~/.zshrc \
+    && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && echo Asia/Shanghai > /etc/timezone \
+    && echo "time zone:" \
+    && cat /etc/timezone \
     && cd /opt/wallet/conf \
     && mv sample-config.min.json ../config.json \
     && mv walletcli-config.json ../ \
